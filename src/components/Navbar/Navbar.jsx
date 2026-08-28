@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react"
 import "./Navbar.css"
 import AddStudent from "../AddStudent/AddStudent"
@@ -7,9 +6,7 @@ import ActiveStudents from "../ActiveStudents/ActiveStudents"
 const Navbar = () => {
 
   const [showModal, setShowModal] = useState(false)
-
   const [students, setStudents] = useState([])
-
   const [editStudentData, setEditStudentData] = useState(null)
 
 
@@ -21,10 +18,16 @@ const Navbar = () => {
     try {
 
       const response = await fetch(
-        "https://lms-backend-delta-plum.vercel.app/"
+        "https://lms-backend-delta-plum.vercel.app/api/students"
       )
 
       const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Failed to fetch students"
+        )
+      }
 
       setStudents(data)
 
@@ -37,7 +40,6 @@ const Navbar = () => {
 
 
   // Load students when page opens
-
   useEffect(() => {
     getStudents()
   }, [])
@@ -75,7 +77,7 @@ const Navbar = () => {
     try {
 
       const response = await fetch(
-        `http://localhost:5000/api/students/${id}`,
+        `https://lms-backend-delta-plum.vercel.app/api/students/${id}`,
         {
           method: "DELETE"
         }
@@ -89,9 +91,7 @@ const Navbar = () => {
         )
       }
 
-
       // Remove student from UI
-
       setStudents((prevStudents) =>
         prevStudents.filter(
           (student) => student._id !== id
@@ -113,9 +113,7 @@ const Navbar = () => {
   // ===============================
 
   const editStudent = (student) => {
-
     setEditStudentData(student)
-
   }
 
 
@@ -130,7 +128,7 @@ const Navbar = () => {
     try {
 
       const response = await fetch(
-        `http://localhost:5000/api/students/${editStudentData._id}`,
+        `https://lms-backend-delta-plum.vercel.app/api/students/${editStudentData._id}`,
         {
           method: "PUT",
 
@@ -150,9 +148,7 @@ const Navbar = () => {
         )
       }
 
-
-      // Update UI
-
+      // Update student in UI
       setStudents((prevStudents) =>
         prevStudents.map((student) =>
           student._id === updatedStudent._id
@@ -161,9 +157,7 @@ const Navbar = () => {
         )
       )
 
-
       // Close edit modal
-
       setEditStudentData(null)
 
     } catch (error) {
@@ -176,7 +170,6 @@ const Navbar = () => {
 
   return (
     <>
-
       {/* ===============================
           NAVBAR
       =============================== */}
@@ -204,7 +197,9 @@ const Navbar = () => {
         </nav>
 
       </div>
-<ActiveStudents/>
+
+
+      <ActiveStudents />
 
 
       {/* ===============================
@@ -214,7 +209,6 @@ const Navbar = () => {
       <div className="student-container">
 
         <h2>Students</h2>
-
 
         {students.length === 0 ? (
 
@@ -450,4 +444,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-
