@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react"
-import "./CurrentEnrolledStudents.css"
+import "../CurrentEnrolledStudents/CurrentEnrolledStudents"
 
 const CurrentEnrolledStudents = () => {
 
