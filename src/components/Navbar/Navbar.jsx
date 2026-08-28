@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import "./Navbar.css"
 import AddStudent from "../AddStudent/AddStudent"
 import ActiveStudents from "../ActiveStudents/ActiveStudents"
-import CurrentEnrolledStudents from "../CurrentEnrolledStudents/CurrentEnrolledStudents"
+
 const Navbar = () => {
 
   const [showModal, setShowModal] = useState(false)
@@ -200,7 +200,7 @@ const Navbar = () => {
 
 
       <ActiveStudents />
-<CurrentEnrolledStudents/>
+
 
       {/* ===============================
           STUDENT LIST
