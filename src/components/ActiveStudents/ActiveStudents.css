@@ -1,0 +1,52 @@
+
+.active-card {
+  width: 280px;
+  padding: 22px;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+  transition: 0.2s ease;
+}
+
+.active-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.active-icon {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #dcfce7;
+  color: #16a34a;
+
+  border-radius: 12px;
+
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.active-content p {
+  margin: 0 0 8px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.active-content h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 30px;
+}
+

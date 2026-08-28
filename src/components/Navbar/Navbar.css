@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 15px 50px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.navbar ul {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 35px;
+  list-style: none;
+}
+
+.navbar li {
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navbar li:hover {
+  color: #4f46e5;
+}
+
+.navbar button {
+  border: none;
+  background-color: #4f46e5;
+  color: white;
+  padding: 11px 20px;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar button:hover {
+  background-color: #3730a3;
+  transform: translateY(-1px);
+}
+
+.student-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.student-container h2 {
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.student-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.student-container th,
+.student-container td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.student-container th {
+  background: #4f46e5;
+  color: white;
+}
+
+.student-container td {
+  color: #333;
+}
+
+.active,
+.inactive {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.inactive {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+
+
+/* Responsive */
+@media (max-width: 600px) {
+  .main {
+    padding: 15px 20px;
+  }
+
+  .navbar ul {
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .navbar li {
+    font-size: 14px;
+  }
+
+  .navbar button {
+    padding: 9px 14px;
+    font-size: 14px;
+  }
+}
+/* Icons */ .edit-icon, .delete-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; transition: 0.2s ease; } /* Edit */ .edit-icon { background: #eef2ff; } .edit-icon:hover { background: #4f46e5; transform: scale(1.05); } /* Delete */ .delete-icon { background: #fee2e2; } .delete-icon:hover { background: #dc2626; transform: scale(1.05); }
