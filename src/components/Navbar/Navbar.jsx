@@ -21,7 +21,7 @@ const Navbar = () => {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/api/students"
+        "https://lms-backend-delta-plum.vercel.app/"
       )
 
       const data = await response.json()
