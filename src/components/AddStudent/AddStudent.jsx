@@ -1,68 +1,107 @@
-
-import React, { useState } from 'react'
-import './AddStudent.css'
+import React, { useState } from "react"
+import "./AddStudent.css"
 
 const AddStudent = ({ onClose, onAddStudent }) => {
 
   const [student, setStudent] = useState({
-    name: '',
-    cnic: '',
-    status: 'Active'
+    name: "",
+    cnic: "",
+    status: "Active"
   })
 
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState("")
+
+
+  // ===============================
+  // HANDLE INPUT CHANGE
+  // ===============================
 
   const handleChange = (e) => {
+
     setStudent({
       ...student,
       [e.target.name]: e.target.value
     })
+
   }
 
+
+  // ===============================
+  // ADD STUDENT
+  // ===============================
+
   const handleSubmit = async (e) => {
+
     e.preventDefault()
 
     setLoading(true)
-    setError('')
+    setError("")
 
     try {
+
       const response = await fetch(
-        'http://localhost:5000/api/students',
+        "https://lms-backend-delta-plum.vercel.app/api/students",
         {
-          method: 'POST',
+          method: "POST",
+
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
           },
+
           body: JSON.stringify(student)
         }
       )
 
+
       const data = await response.json()
 
+
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to add student')
+
+        throw new Error(
+          data.message || "Failed to add student"
+        )
+
       }
 
-      console.log('Student added:', data)
 
+      console.log("Student added:", data)
+
+
+      // Send newly added student to Navbar
       onAddStudent(data)
 
+
+      // Close modal
       onClose()
 
+
     } catch (error) {
-      console.error('Error:', error)
+
+      console.error("Error:", error)
 
       setError(error.message)
+
     } finally {
+
       setLoading(false)
+
     }
+
   }
 
+
   return (
+
     <div className="modal-overlay">
 
       <div className="modal">
+
+
+        {/* ===============================
+            HEADER
+        =============================== */}
 
         <div className="modal-header">
 
@@ -78,9 +117,19 @@ const AddStudent = ({ onClose, onAddStudent }) => {
 
         </div>
 
+
+        {/* ===============================
+            FORM
+        =============================== */}
+
         <form onSubmit={handleSubmit}>
 
-          <label>Student Name</label>
+
+          {/* NAME */}
+
+          <label>
+            Student Name
+          </label>
 
           <input
             type="text"
@@ -91,7 +140,12 @@ const AddStudent = ({ onClose, onAddStudent }) => {
             required
           />
 
-          <label>CNIC</label>
+
+          {/* CNIC */}
+
+          <label>
+            CNIC
+          </label>
 
           <input
             type="text"
@@ -102,24 +156,47 @@ const AddStudent = ({ onClose, onAddStudent }) => {
             required
           />
 
-          <label>Status</label>
+
+          {/* STATUS */}
+
+          <label>
+            Status
+          </label>
 
           <select
             name="status"
             value={student.status}
             onChange={handleChange}
           >
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
+
+            <option value="Active">
+              Active
+            </option>
+
+            <option value="Inactive">
+              Inactive
+            </option>
+
           </select>
 
+
+          {/* ERROR */}
+
           {error && (
+
             <p className="error-message">
               {error}
             </p>
+
           )}
 
+
+          {/* BUTTONS */}
+
           <div className="modal-buttons">
+
+
+            {/* CANCEL */}
 
             <button
               type="button"
@@ -130,27 +207,22 @@ const AddStudent = ({ onClose, onAddStudent }) => {
               Cancel
             </button>
 
+
+            {/* ADD */}
+
             <button
               type="submit"
               className="save-btn"
               disabled={loading}
             >
-              {loading ? 'Adding...' : 'Add Student'}
+
+              {loading
+                ? "Adding..."
+                : "Add Student"
+              }
+
             </button>
 
-            <button
-              type="button"
-              className="edit-btn"
-            >
-              Edit
-            </button>
-
-            <button
-              type="button"
-              className="delete-btn"
-            >
-              Delete
-            </button>
 
           </div>
 
@@ -159,7 +231,9 @@ const AddStudent = ({ onClose, onAddStudent }) => {
       </div>
 
     </div>
+
   )
+
 }
 
 export default AddStudent
